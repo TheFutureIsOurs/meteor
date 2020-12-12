@@ -5,7 +5,6 @@ import (
 	"strconv"
 	"sync"
 	"time"
-	"fmt"
 )
 
 // sign		second			nodeid		seq num		rand seq
@@ -35,6 +34,7 @@ type Node struct {
 	nodeID  int64
 	seqNum  int64
 	randNum int64
+	seed    uint16
 }
 
 // NewNode create a new node id,if the service is reload,nodeID should increase
@@ -46,7 +46,8 @@ func NewNode(nodeID int64) (*Node, error) {
 		second:  time.Now().Unix() - initSecond,
 		nodeID:  nodeID,
 		seqNum:  0,
-		randNum: 1,
+		randNum: 0,
+		seed:    1,
 	}, nil
 }
 
@@ -55,24 +56,20 @@ func (node *Node) Generate() (int64, error) {
 	node.Lock()
 	defer node.Unlock()
 	node.seqNum = (node.seqNum + 1) & maxSeq
-	rands := int64(rand(uint8(node.randNum+1)))
-	node.randNum =  rands & maxRand
-	fmt.Println(rands, node.randNum)
-
+	node.randNum = node.rand(maxRand)
 	if node.seqNum == 0 {
 		node.second = (node.second + 1) & maxSecond
 		if node.second == 0 {
 			return 0, errors.New("Seconds over flow. The max seconds is " + strconv.FormatInt(maxSecond, 10))
 		}
-
 	}
 	return node.second<<timeShift | node.nodeID<<nodeShift | node.seqNum<<seqShift | node.randNum, nil
 }
 
-func rand(seed uint8) uint8 {
-	seed ^= seed << 2
-	seed ^= seed >> 3
-	seed ^= seed << 1
-	fmt.Println(seed)
-	return seed
+// get rand num; Xorshift: http://www.retroprogramming.com/2017/07/xorshift-pseudorandom-numbers-in-z80.html
+func (node *Node) rand(maxNum int64) int64 {
+	node.seed ^= node.seed << 7
+	node.seed ^= node.seed >> 9
+	node.seed ^= node.seed << 8
+	return int64(node.seed) % maxNum
 }

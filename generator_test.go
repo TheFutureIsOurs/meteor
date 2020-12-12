@@ -17,29 +17,16 @@ func TestSeq(t *testing.T) {
 		id, _ := node.Generate()
 		fmt.Println(id)
 	}
-
 }
 
-func TestRand(t *testing.T) {
-	var seed uint8 = 1
-	for i := 0; i < 10; i++ {
-		seed = rand(seed)
-		fmt.Println(seed)
+func BenchmarkGenerator(b *testing.B) {
+	node, err := NewNode(0)
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
-	fmt.Printf("%b\t%b\n", 270369, 270369 | 7)
-}
-
-func TestRand1(b *testing.T) {
-	x := 0
-	y := 0
-	z := 0
-	a := 1
-	for i:=0;i<10;i++ {
-		t := x ^ (x << 4)
-		x = y
-		y = z
-		z = a
-		a = z ^ t ^ ( z >> 1) ^ (t << 1)
-		fmt.Println(a)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		node.Generate()
 	}
 }
