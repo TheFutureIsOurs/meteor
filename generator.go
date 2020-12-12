@@ -1,3 +1,9 @@
+/*
+ * @Author: liudaiming
+ * @Date: 2020-12-10 18:41:01
+ * @LastEditTime: 2020-12-12 18:43:53
+ */
+
 package genuid
 
 import (
