@@ -1,8 +1,15 @@
-package genuid
+/*
+ * @Author: liudaiming
+ * @Date: 2020-12-12 09:06:15
+ * @LastEditTime: 2020-12-13 17:31:06
+ * @Description:
+ */
+package meteor
 
 import (
 	"fmt"
 	"testing"
+	"time"
 )
 
 func TestSeq(t *testing.T) {
@@ -19,7 +26,7 @@ func TestSeq(t *testing.T) {
 	}
 }
 
-func BenchmarkGenerator(b *testing.B) {
+func BenchmarkMeteor(b *testing.B) {
 	node, err := NewNode(0)
 	if err != nil {
 		fmt.Println(err)
@@ -28,5 +35,11 @@ func BenchmarkGenerator(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		node.Generate()
+	}
+}
+
+func BenchmarkTime(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		time.Now().UnixNano()
 	}
 }
