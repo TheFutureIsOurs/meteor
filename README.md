@@ -35,7 +35,7 @@ Explain：
 
 Data section is the time difference when the current NodeID is created. So Meteor just rely on the system time when one NodeID is created. This can resolve time back.
 
-NodeID section，for the result ID unique, we should keep the NodeID unique. For example, if we add new machine or one machine is reload, we should increase the NodeID.
+NodeID section，for the result ID unique, we should keep the NodeID unique. For example, if we add new machine or one machine is reload, we should increase the NodeID, we can use mysql do this.
 
 Serial section is 11 bits, increment when the generator is called. the Data section should +1 when the serial reach 2048,
 then the serial began from zero.
