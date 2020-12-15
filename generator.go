@@ -1,7 +1,5 @@
 /*
- * @Author: liudaiming
- * @Date: 2020-12-10 18:41:01
- * @LastEditTime: 2020-12-13 17:30:56
+ * @Author: Daiming Liu (xingrufeng)
  */
 
 package meteor

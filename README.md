@@ -1,3 +1,6 @@
+<!--
+ * @Author: Daiming Liu (xingrufeng)
+-->
 # meteor
 An implementation of distributed ID.
 
