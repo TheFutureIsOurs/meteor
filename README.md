@@ -45,7 +45,7 @@ then the serial began from zero.
 
 Rand section is 3 bits. Why we need this? Just because we want discrete IDs. For example, if the result id is 1,2,3,4 etc,which is easy to get next. Why Snowflake do not have rand num? Because Snowflake is based on millisecond, the qps should reach 4096000, the result ID can continuous.
 
-Because we need rand section,what random algorithm we should choose? As we know, most random algorithm is based on the system time as seed. If we use this, we can't reach our goal:high performace than Snowflake and can't remove system time when generator. We need high performance random algorithm. I choose the [Xorshift算法](https://en.wikipedia.org/wiki/Xorshift)。
+Because we need rand section,what random algorithm we should choose? As we know, most random algorithm is based on the system time as seed. If we use this, we can't reach our goal:high performace than Snowflake and can't remove system time when generator. We need high performance random algorithm. I choose the [Xorshift algorithm](https://en.wikipedia.org/wiki/Xorshift)。
 
 Let's generator 10 IDs:
 
