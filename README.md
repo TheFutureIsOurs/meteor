@@ -22,6 +22,20 @@ go version：1.15
 	52173231	   22.6 ns/op	       0 B/op	       0 allocs/op
 
 
+### How to use
+
+>go get -u github.com/TheFutureIsOurs/meteor
+
+```go
+
+import "github.com/TheFutureIsOurs/meteor"
+
+node, _ := meteor.NewNode(0)
+id, _ := node.Generate()
+
+```
+I'd strongly recommend that keep nodeID uniq when you NewNode,
+include reload you service or add new machine. You can use mysql's increase id to keep you NodeID unique.
 
 ### Meteor
 

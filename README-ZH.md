@@ -18,8 +18,23 @@ go版本：1.15
 
 可以看出流星算法比雪花算法快10倍
 
+### 如何使用
 
-###流星算法
+>go get -u github.com/TheFutureIsOurs/meteor
+
+```go
+
+import "github.com/TheFutureIsOurs/meteor"
+
+node, _ := meteor.NewNode(0)
+id, _ := node.Generate()
+
+```
+
+强烈建议在线上使用时，保证NodeID的唯一性，包括新增机器及当前机器重启时。你可以借助mysql的自增id来确保NodeID唯一.
+
+
+### 流星算法
 
 
 64位，
