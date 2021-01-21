@@ -43,7 +43,10 @@ id, _ := node.Generate()
 
 ![](http://www.imflybird.cn/static/img/2020/meteor.png)
 
-设计初衷：
+
+[设计初衷见博文](https://www.imflybird.cn/2020/12/09/%E4%BB%8EMongoID%E8%AE%A8%E8%AE%BA%E5%88%86%E5%B8%83%E5%BC%8F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88/)
+
+解释：
 
 第一位同样保留（正数）
 
