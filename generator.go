@@ -30,8 +30,6 @@ const (
 	seqShift   uint8 = randBits
 )
 
-var curSecond int64 = time.Now().Unix()
-
 // Node contains infomation of generator id
 type Node struct {
 	sync.Mutex
